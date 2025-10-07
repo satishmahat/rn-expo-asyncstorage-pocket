@@ -2,13 +2,14 @@ import { ScrollView, StyleSheet, Text, View, TextInput, Pressable, Alert } from 
 import React, { useState , useEffect} from 'react'
 import tw from 'twrnc'
 import { useExpense } from '../context/ExpenseContext'
+import { CATEGORIES } from '../constants'
 
 const Create = ({navigation, route}) => {
   
   const {addExpense} = useExpense();
   const [amount, setAmount] = useState(null);
   const [title, setTitle] = useState(null);
-  const [category, setCategory] = useState({});
+  const [category, setCategory] = useState(CATEGORIES[0]); // Set Food as default
 
   useEffect(() => {
     if(route.params?.category) {
@@ -24,7 +25,7 @@ const Create = ({navigation, route}) => {
     addExpense({amount, title, category});
     setAmount(null);
     setTitle(null);
-    setCategory({});
+    setCategory(CATEGORIES[0]); // Reset to Food after adding expense
     navigation.navigate('Home');
   }
 
@@ -64,8 +65,8 @@ const Create = ({navigation, route}) => {
 
           <Pressable style={tw`border-2 border-gray-300 p-4 rounded-xl text-lg flex-row justify-between`} onPress={handleCategoryInput}>
             <View style={tw`flex-row items-center`}>
-              <Text style={tw`text-2xl mr-3`}>{category.icon || '🍕'}</Text>
-              <Text style={tw`text-lg`}>{category.name || 'Food'}</Text>
+              <Text style={tw`text-2xl mr-3`}>{category.icon}</Text>
+              <Text style={tw`text-lg`}>{category.name}</Text>
 
             </View>
             <Text style={tw`text-2xl`}>&gt;</Text>
