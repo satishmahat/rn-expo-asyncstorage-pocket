@@ -1,9 +1,11 @@
 import { ScrollView, StyleSheet, Text, View, TextInput, Pressable, Alert } from 'react-native'
 import React, { useState , useEffect} from 'react'
 import tw from 'twrnc'
+import { useExpense } from '../context/ExpenseContext'
 
 const Create = ({navigation, route}) => {
   
+  const {addExpense} = useExpense();
   const [amount, setAmount] = useState(null);
   const [title, setTitle] = useState(null);
   const [category, setCategory] = useState({});
@@ -19,7 +21,11 @@ const Create = ({navigation, route}) => {
       Alert.alert('Please fill in all fields');
       return;
     }
-    console.log('Added Expense : ', amount, title, category);
+    addExpense({amount, title, category});
+    setAmount(null);
+    setTitle(null);
+    setCategory({});
+    navigation.navigate('Home');
   }
 
   const handleCategoryInput = () => {

@@ -7,8 +7,3 @@ export const getId = () => {
 export const getDate = () => {
     return new Date().toISOString().split('T')[0];
 };
-
-export const getCategoryColor = (color) => {
-    const category = CATEGORIES.find(category => category.color === color);
-    return category ? category.color : '#808080';
-};
