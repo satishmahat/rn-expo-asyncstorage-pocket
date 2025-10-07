@@ -1,0 +1,16 @@
+export const CATEGORIES =[
+    {name: 'Food', icon: '🍕', color: '#FF6B6B'},
+    {name: 'Bills/Utilities', icon: '⚡', color: '#FFA500'},
+    {name: 'Family', icon: '👨‍👩‍👧‍👦', color: '#FF69B4'},
+    {name: 'Fuel', icon: '⛽', color: '#FFD700'},
+    {name: 'Phone/Internet', icon: '📱', color: '#00CED1'},
+    {name: 'Education', icon: '📚', color: '#F7DC6F'},
+    {name: 'Entertainment', icon: '🎬', color: '#96CEB4'},
+    {name: 'Shopping', icon: '🛒', color: '#45B7D1'},
+    {name: 'Travel', icon: '✈️', color: '#87CEEB'},
+    {name: 'Socialization', icon: '👥', color: '#DDA0DD'},
+    {name: 'Transfer', icon: '💸', color: '#98FB98'},
+    {name: 'Transportation', icon: '🚗', color: '#4ECDC4'},
+    {name: 'Housing', icon: '🏠', color: '#DEB887'},
+    {name: 'Miscellaneous', icon: '📦', color: '#D3D3D3'},
+]

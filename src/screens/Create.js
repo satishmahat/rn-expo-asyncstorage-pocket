@@ -1,18 +1,29 @@
 import { ScrollView, StyleSheet, Text, View, TextInput, Pressable, Alert } from 'react-native'
-import React, { useState } from 'react'
+import React, { useState , useEffect} from 'react'
 import tw from 'twrnc'
 
-const Create = () => {
+const Create = ({navigation, route}) => {
   
   const [amount, setAmount] = useState(null);
   const [title, setTitle] = useState(null);
-  
+  const [category, setCategory] = useState({});
+
+  useEffect(() => {
+    if(route.params?.category) {
+      setCategory(route.params.category);
+    }
+  }, [route.params?.category]);
+
   const handleAddExpense = () => {
-    if(!amount || !title) {
+    if(!amount || !title || !category) {
       Alert.alert('Please fill in all fields');
       return;
     }
-    console.log('Add Expense', amount, title);
+    console.log('Added Expense : ', amount, title, category);
+  }
+
+  const handleCategoryInput = () => {
+    navigation.navigate('Category');
   }
 
   return (
@@ -44,10 +55,11 @@ const Create = () => {
         
         <View style={tw`mb-5`}>
           <Text style={tw`text-lg text-gray-600 font-semibold mb-2`}>Category</Text>
-          <Pressable style={tw`border-2 border-gray-300 p-4 rounded-xl text-lg flex-row justify-between`}>
+
+          <Pressable style={tw`border-2 border-gray-300 p-4 rounded-xl text-lg flex-row justify-between`} onPress={handleCategoryInput}>
             <View style={tw`flex-row items-center`}>
-              <Text style={tw`text-2xl mr-3`}>🍕</Text>
-              <Text style={tw`text-lg`}>Food</Text>
+              <Text style={tw`text-2xl mr-3`}>{category.icon || '🍕'}</Text>
+              <Text style={tw`text-lg`}>{category.name || 'Food'}</Text>
 
             </View>
             <Text style={tw`text-2xl`}>&gt;</Text>
