@@ -4,6 +4,7 @@ import tw from 'twrnc'
 import EmptyList from '../components/EmptyList'
 import ExpenseItemCard from '../components/ExpenseItemCard'
 import { useExpense } from '../context/ExpenseContext'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 
 const Home = () => {
@@ -14,8 +15,7 @@ const Home = () => {
 
   return (
     
-    <View style={tw`flex-1`}>
-
+    <SafeAreaView style={tw`flex-1`}>
       <View style={tw`px-5 pt-5 pb-3`}>
         <Text style={tw`text-4xl font-bold text-black`}>Hello 👋</Text>
         <Text style={tw`text-base text-gray-500 mt-1`}>Start tracking your expenses easily.</Text>
@@ -35,7 +35,7 @@ const Home = () => {
 
       />
 
-    </View>
+    </SafeAreaView>
   )
 }
 

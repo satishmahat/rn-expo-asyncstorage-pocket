@@ -3,6 +3,7 @@ import React, { useState , useEffect} from 'react'
 import tw from 'twrnc'
 import { useExpense } from '../context/ExpenseContext'
 import { CATEGORIES } from '../constants'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 const Create = ({navigation, route}) => {
   
@@ -34,7 +35,7 @@ const Create = ({navigation, route}) => {
   }
 
   return (
-    <View>
+    <SafeAreaView>
       <ScrollView contentContainerStyle={tw`p-6`}>
         {/* Header */}
         <Text style={tw`text-3xl font-bold text-black`}>Add New Expense</Text>
@@ -79,7 +80,7 @@ const Create = ({navigation, route}) => {
          <Text style={tw`text-white text-center text-lg font-bold`}>Add Expense</Text>
         </Pressable>
       </ScrollView>
-    </View>
+    </SafeAreaView>
   )
 }
 

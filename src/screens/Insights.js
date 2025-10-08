@@ -4,6 +4,7 @@ import tw from 'twrnc'
 import { PieChart } from 'react-native-gifted-charts'
 import { useExpense } from '../context/ExpenseContext'
 import { processedDataForChart } from '../helper'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 
 const Insights = () => {
@@ -28,7 +29,7 @@ const Insights = () => {
   }
 
   return (
-    <View style={tw`flex-1 bg-white`}>
+    <SafeAreaView style={tw`flex-1 bg-white`}>
       <Text style={tw`text-4xl text-center font-bold px-5 pt-5 pb-6`}>Spending Summary</Text>
 
       <View style={tw`items-center`}>
@@ -49,7 +50,7 @@ const Insights = () => {
         keyExtractor={(item) => item.name}
         contentContainerStyle={tw`p-4`}
       />    
-    </View>
+    </SafeAreaView>
   )
 }
 
