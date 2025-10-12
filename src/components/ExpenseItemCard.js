@@ -1,10 +1,31 @@
-import { StyleSheet, Text, View} from 'react-native'
+import { StyleSheet, Text, View, Pressable, Alert} from 'react-native'
 import React from 'react'
 import tw from 'twrnc'
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 import { Ionicons } from '@expo/vector-icons';
+import { useExpense } from '../context/ExpenseContext';
 
 const ExpenseItemCard = ({item}) => {
+    const { deleteExpense } = useExpense();
+
+    const handleDelete = () => {
+        Alert.alert(
+            'Delete Expense',
+            `Are you sure you want to delete "${item.title}"?`,
+            [
+                {
+                    text: 'Cancel',
+                    style: 'cancel',
+                },
+                {
+                    text: 'Delete',
+                    style: 'destructive',
+                    onPress: () => deleteExpense(item.id),
+                },
+            ]
+        );
+    };
+
     const LeftSwipeActions = () => {
     return (
         <View style={tw`w-20 bg-blue-500 justify-center items-center rounded-2xl ml-5 -mr-3 mb-3`}>
@@ -16,11 +37,17 @@ const ExpenseItemCard = ({item}) => {
     }
     const rightSwipeActions = () => {
     return (
-        <View style={tw`w-20 bg-red-500 justify-center items-center rounded-2xl mr-5 -ml-3 mb-3`}>
+        <Pressable 
+            style={({ pressed }) => [
+                tw`w-20 bg-red-500 justify-center items-center rounded-2xl mr-5 -ml-3 mb-3`,
+                pressed && tw`opacity-70`
+            ]}
+            onPress={handleDelete}
+        >
             <View style={tw`w-12 h-12 bg-white rounded-full items-center justify-center`}>
                 <Ionicons name="trash-outline" size={24} color="#EF4444" />
             </View>
-        </View>
+        </Pressable>
     )
     }
   return (

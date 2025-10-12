@@ -53,8 +53,12 @@ export const ExpenseProvider = ({children}) => {
         }
         setExpenses([...expenses, newExpense]);
     }
+
+    const deleteExpense = (id) => {
+        setExpenses(expenses.filter(expense => expense.id !== id));
+    }
     return (
-        <ExpenseContext.Provider value={{expenses, addExpense}}>{children}</ExpenseContext.Provider>
+        <ExpenseContext.Provider value={{expenses, addExpense, deleteExpense}}>{children}</ExpenseContext.Provider>
     );
 };
 
