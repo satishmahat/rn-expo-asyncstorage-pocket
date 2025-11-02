@@ -8,6 +8,7 @@ import Insights from "../screens/Insights";
 import Category from "../screens/Category";
 import Transactions from "../screens/Transactions";
 import { AntDesign } from "@expo/vector-icons";
+import { LinearGradient } from 'expo-linear-gradient';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -17,7 +18,12 @@ function CustomTabBar({ state, descriptors, navigation }) {
   const insets = useSafeAreaInsets();
 
   return (
-    <View style={[styles.tabBarContainer, { paddingBottom: Math.max(insets.bottom, 10) + 10 }]}>
+    <LinearGradient 
+        colors={['rgba(255,255,255,0.2)', 'rgba(255,255,255,0.4)', 'rgb(255, 255, 255, 0.9)']} // Transparent → White
+        start={{ x: 0, y: 0 }}
+        end={{ x: 0, y: 1 }}
+        style={[styles.tabBarContainer, { paddingBottom: Math.max(insets.bottom, 10) + 0 }]}
+    >
       <View style={styles.tabBar}>
         {state.routes.map((route, index) => {
           const { options } = descriptors[route.key];
@@ -73,7 +79,7 @@ function CustomTabBar({ state, descriptors, navigation }) {
           );
         })}
       </View>
-    </View>
+    </LinearGradient>
   );
 }
 
@@ -104,7 +110,7 @@ const styles = StyleSheet.create({
   tabBarContainer: {
     paddingHorizontal: 16,
     alignItems: 'center',
-    backgroundColor: 'transparent',
+    // backgroundColor: 'transparent',
     position: 'absolute',
     bottom: 0,
     width: '100%',

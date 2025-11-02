@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, Text, View, TextInput, Pressable, Alert } from 'react-native'
+import { ScrollView, StyleSheet, Text, View, TextInput, Pressable, Alert, KeyboardAvoidingView, Platform } from 'react-native'
 import React, { useState , useEffect} from 'react'
 import tw from 'twrnc'
 import { useExpense } from '../context/ExpenseContext'
@@ -35,7 +35,12 @@ const Create = ({navigation, route}) => {
   }
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={tw`flex-1`}>
+    <KeyboardAvoidingView 
+      style={tw`flex-1`}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 20}
+    >
       <ScrollView contentContainerStyle={tw`p-6`}>
         {/* Header */}
         <Text style={tw`text-3xl font-bold text-black`}>Add New Expense</Text>
@@ -80,6 +85,8 @@ const Create = ({navigation, route}) => {
          <Text style={tw`text-white text-center text-lg font-bold`}>Add Expense</Text>
         </Pressable>
       </ScrollView>
+    
+    </KeyboardAvoidingView>
     </SafeAreaView>
   )
 }
