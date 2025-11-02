@@ -29,7 +29,7 @@ const Insights = () => {
   }
 
   return (
-    <SafeAreaView style={tw`flex-1 bg-white`}>
+    <SafeAreaView style={tw`flex-1`}>
       <Text style={tw`text-4xl text-center font-bold px-5 pt-5 pb-6`}>Spending Summary</Text>
 
       <View style={tw`items-center`}>

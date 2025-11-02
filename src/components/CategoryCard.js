@@ -10,7 +10,7 @@ const CategoryCard = ({ item, onPress }) => {
       onPress={onPress}
       android_ripple={{ color: '#e5e7eb' }}
       style={({ pressed }) => [
-        tw`mx-5 mb-3 rounded-2xl overflow-hidden`,
+        tw`mb-3 rounded-2xl overflow-hidden`,
         { transform: [{ scale: pressed ? 0.96 : 1 }] },
       ]}
     >

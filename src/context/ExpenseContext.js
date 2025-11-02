@@ -57,8 +57,12 @@ export const ExpenseProvider = ({children}) => {
     const deleteExpense = (id) => {
         setExpenses(expenses.filter(expense => expense.id !== id));
     }
+    
+    // Sort expenses by amount in descending order (highest first)
+    const sortedExpenses = [...expenses].sort((a, b) => b.amount - a.amount);
+    
     return (
-        <ExpenseContext.Provider value={{expenses, addExpense, deleteExpense}}>{children}</ExpenseContext.Provider>
+        <ExpenseContext.Provider value={{expenses: sortedExpenses, addExpense, deleteExpense}}>{children}</ExpenseContext.Provider>
     );
 };
 
