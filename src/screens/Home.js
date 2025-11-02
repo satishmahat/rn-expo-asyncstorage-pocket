@@ -1,17 +1,24 @@
-import { StyleSheet, Text, View, FlatList } from 'react-native'
+import { StyleSheet, Text, View, FlatList, Alert } from 'react-native'
 import React from 'react'
 import tw from 'twrnc'
 import EmptyList from '../components/EmptyList'
-import ExpenseItemCard from '../components/ExpenseItemCard'
+import CategoryCard from '../components/CategoryCard'
 import { useExpense } from '../context/ExpenseContext'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import { processedDataForChart } from '../helper'
 
 
 const Home = () => {
   
   const {expenses} = useExpense();
 
+  const categoryData = processedDataForChart(expenses);
+
   const totalSpent = expenses.reduce((total, item) => total + item.amount, 0);
+
+  const handleCategoryPress = (categoryName) => {
+    Alert.alert(categoryName);
+  }
 
   return (
     
@@ -27,9 +34,9 @@ const Home = () => {
       </View>
 
       <FlatList 
-        data={expenses} 
-        renderItem={({item}) => <ExpenseItemCard item={item}/>}
-        keyExtractor={(item) => item.id}
+        data={categoryData} 
+        renderItem={({item}) => <CategoryCard item={item} onPress={() => handleCategoryPress(item.name)}/>}
+        keyExtractor={(item) => item.name}
         contentContainerStyle={{paddingBottom: 20}}
         ListEmptyComponent={<EmptyList />}
 

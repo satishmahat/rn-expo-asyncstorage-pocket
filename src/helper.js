@@ -29,8 +29,10 @@ export const processedDataForChart = (expenses) => {
         amount,
         value: percentage,
         color: categoryInfo?.color || '#808080',
+        icon: categoryInfo?.icon,
         text: `${percentage}%`,
     }
    })
+   pieChartData.sort((a, b) => b.amount - a.amount);
    return pieChartData;
 }
