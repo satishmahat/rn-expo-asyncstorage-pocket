@@ -1,6 +1,6 @@
 import { View, Text, Pressable } from 'react-native'
 import React from 'react'
-import tw from 'twrnc'
+import tw from '../utils/tw'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons'
 
@@ -29,12 +29,12 @@ const CategoryCard = ({ item, onPress }) => {
               { backgroundColor: item.color || '#f3f4f6' },
             ]}
           >
-            <Text style={tw`text-2xl`}>{item.icon}</Text>
+            <Text style={tw`text-2xl font-syne`}>{item.icon}</Text>
           </View>
 
           <View style={tw`flex-1`}>
             <Text
-              style={tw`text-base font-bold text-gray-800`}
+              style={tw`text-base font-syneBold text-gray-800`}
               numberOfLines={2}
               ellipsizeMode="tail"
             >
@@ -42,14 +42,14 @@ const CategoryCard = ({ item, onPress }) => {
             </Text>
             <View style={tw`flex-row items-center mt-1`}>
             <Ionicons name="aperture-outline" size={12} color="black" />
-            <Text style={tw`text-xs text-gray-700 ml-1`}>{item.text}</Text>
+            <Text style={tw`text-xs font-syne text-gray-700 ml-1`}>{item.text}</Text>
           </View>
           </View>
         </View>
 
         {/* Right Section */}
         <View style={tw`items-end flex-shrink-0 flex-row items-center`}>
-            <Text style={tw`text-lg font-bold text-black mr-1`}>
+            <Text style={tw`text-lg font-syneBold text-black mr-1`}>
                 ${item.amount.toFixed(2)}
             </Text>
             <Ionicons name="chevron-forward-outline" size={16} color="#4B5563" />

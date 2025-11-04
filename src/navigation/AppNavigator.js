@@ -1,14 +1,18 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { View, Text, TouchableOpacity, StyleSheet, Animated } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, Animated, ActivityIndicator } from "react-native";
+import tw from "../utils/tw";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Home from "../screens/Home";
 import Create from "../screens/Create";
 import Insights from "../screens/Insights";
 import Category from "../screens/Category";
 import Transactions from "../screens/Transactions";
+import Welcome from "../onboarding/Welcome";
+import NameInput from "../onboarding/NameInput";
 import { AntDesign } from "@expo/vector-icons";
 import { LinearGradient } from 'expo-linear-gradient';
+import { useExpense } from "../context/ExpenseContext";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -73,7 +77,7 @@ function CustomTabBar({ state, descriptors, navigation }) {
                   size={isFocused ? 22 : 24} 
                   color={isFocused ? "black" : "#cccccc"} 
                 />
-                {isFocused && <Text style={styles.activeLabel}>{label}</Text>}
+                {isFocused && <Text style={[styles.activeLabel, tw`font-syne`]}>{label}</Text>}
               </Animated.View>
             </TouchableOpacity>
           );
@@ -97,7 +101,33 @@ function MyTabs() {
   );
 }
 
+function OnboardingNavigator() {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Welcome" component={Welcome} />
+      <Stack.Screen name="NameInput" component={NameInput} />
+    </Stack.Navigator>
+  );
+}
+
 export default function AppNavigator() {
+  const { hasCompletedOnboarding, isLoading } = useExpense();
+
+  // Show loading screen while checking onboarding status
+  if (isLoading || hasCompletedOnboarding === null) {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#52c1b7' }}>
+        <ActivityIndicator size="large" color="#fff" />
+      </View>
+    );
+  }
+
+  // Show onboarding if not completed
+  if (!hasCompletedOnboarding) {
+    return <OnboardingNavigator />;
+  }
+
+  // Show main app if onboarding is completed
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="BottomTabs" component={MyTabs} />

@@ -1,6 +1,6 @@
 import { ScrollView, StyleSheet, Text, View, TextInput, Pressable, Alert, KeyboardAvoidingView, Platform } from 'react-native'
 import React, { useState , useEffect} from 'react'
-import tw from 'twrnc'
+import tw from '../utils/tw'
 import { useExpense } from '../context/ExpenseContext'
 import { CATEGORIES } from '../constants'
 import { SafeAreaView } from 'react-native-safe-area-context'
@@ -43,23 +43,23 @@ const Create = ({navigation, route}) => {
     >
       <ScrollView contentContainerStyle={tw`p-6`}>
         {/* Header */}
-        <Text style={tw`text-3xl font-bold text-black`}>Add New Expense</Text>
-        <Text style={tw`text-base text-gray-500 mt-2 mb-8`}>Enter the details of your expense</Text>
+        <Text style={tw`text-3xl font-syneBold text-black`}>Add New Expense</Text>
+        <Text style={tw`text-base font-syne text-gray-500 mt-2 mb-8`}>Enter the details of your expense</Text>
       
         {/* Expense Form Section */}
         <View style={tw`mb-5`}>
-          <Text style={tw`text-lg text-gray-600 font-semibold mb-2`}>Enter Amount</Text>
+          <Text style={tw`text-lg text-gray-600 font-syneSemiBold mb-2`}>Enter Amount</Text>
           <TextInput 
-          style={tw`border-2 border-gray-300 p-4 rounded-xl text-lg`} 
+          style={tw`border-2 border-gray-300 p-4 rounded-xl text-lg font-syne`} 
           placeholder='$0.00' 
           value={amount}
           onChangeText={setAmount}
           />
         </View>
         <View style={tw`mb-5`}>
-          <Text style={tw`text-lg text-gray-600 font-semibold mb-2`}>Title</Text>
+          <Text style={tw`text-lg text-gray-600 font-syneSemiBold mb-2`}>Title</Text>
           <TextInput 
-          style={tw`border-2 border-gray-300 p-4 rounded-xl text-lg`} 
+          style={tw`border-2 border-gray-300 p-4 rounded-xl text-lg font-syne`} 
           placeholder='What was it for ?' 
           value={title}
           onChangeText={setTitle}
@@ -67,22 +67,22 @@ const Create = ({navigation, route}) => {
         </View>
         
         <View style={tw`mb-5`}>
-          <Text style={tw`text-lg text-gray-600 font-semibold mb-2`}>Category</Text>
+          <Text style={tw`text-lg text-gray-600 font-syneSemiBold mb-2`}>Category</Text>
 
           <Pressable style={tw`border-2 border-gray-300 p-4 rounded-xl text-lg flex-row justify-between`} onPress={handleCategoryInput}>
             <View style={tw`flex-row items-center`}>
-              <Text style={tw`text-2xl mr-3`}>{category.icon}</Text>
-              <Text style={tw`text-lg`}>{category.name}</Text>
+              <Text style={tw`text-2xl font-syne mr-3`}>{category.icon}</Text>
+              <Text style={tw`text-lg font-syne`}>{category.name}</Text>
 
             </View>
-            <Text style={tw`text-2xl`}>&gt;</Text>
+            <Text style={tw`text-2xl font-syne`}>&gt;</Text>
           </Pressable>
         </View>
 
 
         {/* Footer Section */}
         <Pressable style={tw`bg-black p-6 rounded-lg mt-8`} onPress={handleAddExpense}>
-         <Text style={tw`text-white text-center text-lg font-bold`}>Add Expense</Text>
+         <Text style={tw`text-white text-center text-lg font-syneBold`}>Add Expense</Text>
         </Pressable>
       </ScrollView>
     

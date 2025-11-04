@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, Pressable, Alert} from 'react-native'
 import React from 'react'
-import tw from 'twrnc'
+import tw from '../utils/tw'
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 import { Ionicons } from '@expo/vector-icons';
 import { useExpense } from '../context/ExpenseContext';
@@ -61,19 +61,19 @@ const ExpenseItemCard = ({item}) => {
     <View style={[tw`bg-white rounded-2xl p-4 mx-5 mb-3 flex-row items-center justify-between shadow-sm`, {borderLeftWidth: 0.5, borderLeftColor: '#3B82F6', borderRightWidth: 0.5, borderRightColor: '#EF4444'}]}>
         <View style={tw`flex-row items-center flex-1 mr-3`}>
             <View style={tw`w-12 h-12 rounded-xl bg-gray-100 items-center justify-center mr-4`}>
-                <Text>{item.icon}</Text>
+                <Text style={tw`font-syne`}>{item.icon}</Text>
             </View>
             <View style={tw`flex-1`}>
-                <Text style={tw`text-base font-bold text-gray-800`} numberOfLines={2} ellipsizeMode="tail">{item.title}</Text>
+                <Text style={tw`text-base font-syneBold text-gray-800`} numberOfLines={2} ellipsizeMode="tail">{item.title}</Text>
                 <View style={[tw`mt-1 px-2 py-1 rounded-lg self-start `, {backgroundColor: item.color}]}>
-                    <Text style={tw`text-gray-800 text-xs font-bold`}>{item.category}</Text>
+                    <Text style={tw`text-gray-800 text-xs font-syneBold`}>{item.category}</Text>
                 </View>
             </View>
         </View> 
 
         <View style={tw`items-end flex-shrink-0`}>
-            <Text style={tw`text-base font-bold text-black`}>$ {item.amount.toFixed(2)}</Text>
-            <Text style={tw`text-xs text-gray-500 mt-1`}>{item.date}</Text>
+            <Text style={tw`text-base font-syneBold text-black`}>$ {item.amount.toFixed(2)}</Text>
+            <Text style={tw`text-xs font-syne text-gray-500 mt-1`}>{item.date}</Text>
         </View>
     </View>
     </Swipeable>

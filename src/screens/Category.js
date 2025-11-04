@@ -1,7 +1,7 @@
 // Modal Screen
 import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import tw from 'twrnc'
+import tw from '../utils/tw'
 import { CATEGORIES } from '../constants'
 
 const Category = ({navigation}) => {
@@ -20,8 +20,8 @@ const Category = ({navigation}) => {
             style={tw`flex-1 items-center bg-white rounded-xl p-4 m-2 shadow-sm border border-gray-200`}
             onPress={() => handleSelectedCategory(item)}
             >
-                <Text style={tw`text-4xl`}>{item.icon}</Text>
-                <Text style={tw`mt-2 text-center text-sm text-gray-700`}>{item.name}</Text>
+                <Text style={tw`text-4xl font-syne`}>{item.icon}</Text>
+                <Text style={tw`mt-2 text-center text-sm font-syne text-gray-700`}>{item.name}</Text>
             </Pressable>
         )
     }
@@ -29,10 +29,10 @@ const Category = ({navigation}) => {
     <View style={tw`flex-1`}>
         <View style={tw`p-5`}>
             <Pressable onPress={() => navigation.goBack()}>
-                <Text style={tw`text-2xl font-bold`}>X</Text>
+                <Text style={tw`text-2xl font-syneBold`}>X</Text>
             </Pressable>
-            <Text style={tw`text-3xl font-bold mt-4`}>Select Category</Text>
-            <Text style={tw`text-base text-gray-500 mb-4 mt-2`}>Select the category that best describes the nature of your expense</Text>
+            <Text style={tw`text-3xl font-syneBold mt-4`}>Select Category</Text>
+            <Text style={tw`text-base font-syne text-gray-500 mb-4 mt-2`}>Select the category that best describes the nature of your expense</Text>
         </View> 
 
         <FlatList 
