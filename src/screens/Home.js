@@ -31,13 +31,13 @@ const Home = () => {
       >
         {/* Fixed Header Section */}
         <View style={tw`pb-3 pt-5`}>
-          <Text style={tw`text-4xl font-syneBold text-black`}>Hello {displayName}! 👋</Text>
+          <Text style={tw`text-4xl font-syneBold text-black`}>Hello <Text style={tw`text-[#52c1b7]`}>{displayName}</Text> ! 👋</Text>
           <Text style={tw`text-base font-syne text-gray-500 mt-1`}>Start tracking your expenses easily.</Text>
         </View>
 
         <View style={tw`bg-black rounded-3xl p-6 my-6 items-center shadow-lg`}>
           <Text style={tw`text-base font-syne text-gray-400`}> Spent so far</Text>
-          <Text style={tw`text-base text-white text-4xl mt-2 font-syneBold`}> $ {totalSpent.toFixed(2)}</Text>  
+          <Text style={tw`text-base text-white text-4xl font-syneBold`}> $ {totalSpent.toFixed(2)}</Text>  
         </View>
 
         {/* Category List Section - Scrollable with Max Height */}

@@ -21,7 +21,11 @@ const Welcome = ({ navigation }) => {
                 height: height * 0.7,
                 borderBottomLeftRadius: width,
                 borderBottomRightRadius: width,
-                overflow: 'hidden',
+                shadowColor: '#000',
+                shadowOpacity: 0.2,
+                shadowOffset: { width: 0, height: 4 },
+                shadowRadius: 10,
+                elevation: 10,
             }
         ]}>
             <View style={tw`flex-1 justify-center items-center mb-4`}>
@@ -46,7 +50,7 @@ const Welcome = ({ navigation }) => {
             onPress={() => navigation.push('NameInput')}
             activeOpacity={0.85}
           >
-            <Text style={tw`text-[#52c1b7] text-xl font-syneSemiBold text-center`}>Get Started</Text>
+            <Text style={tw`text-[#52c1b7] text-xl font-syneSemiBold text-center`}>Get Started →</Text>
           </TouchableOpacity>
         </View>
 
