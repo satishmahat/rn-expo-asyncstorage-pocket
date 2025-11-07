@@ -1,4 +1,6 @@
-export const CATEGORIES = [
+import type { Category } from './types';
+
+export const CATEGORIES: Category[] = [
     { name: 'Food & Drinks', icon: '🍽️', color: '#FF6B6B' },
     { name: 'Transportation', icon: '🚗', color: '#4ECDC4' },
     { name: 'Housing & Rent', icon: '🏠', color: '#DEB887' },
@@ -16,4 +18,4 @@ export const CATEGORIES = [
     { name: 'Transfers', icon: '💸', color: '#A3E4D7' },
     { name: 'Miscellaneous', icon: '📦', color: '#D3D3D3' },
 ];
-  
+
