@@ -97,7 +97,7 @@ export default function Insights() {
         showsVerticalScrollIndicator={false}
         ListHeaderComponent={
           <View className="pt-3 pb-3 ml-1">
-            <Text className="text-2xl font-syneSemiBold text-black">
+            <Text className="text-xl font-syneSemiBold text-black">
               Category Breakdown :
             </Text>
           </View>

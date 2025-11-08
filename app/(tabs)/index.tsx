@@ -1,6 +1,7 @@
 import { MaterialCommunityIcons } from '@expo/vector-icons'
+import { useRouter } from 'expo-router'
 import React from 'react'
-import { Alert, ScrollView, Text, View } from 'react-native'
+import { ScrollView, Text, View } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import type { Expense } from '../../constants/types'
 import { useExpense } from '../../context/ExpenseContext'
@@ -11,12 +12,18 @@ import EmptyList from '../../components/EmptyList'
 
 export default function Home() {
   const { expenses, userName } = useExpense()
+ const router = useRouter()
   const insets = useSafeAreaInsets()
+
   const categoryData = processedDataForChart(expenses)
   const totalSpent = expenses.reduce((total: number, item: Expense) => total + item.amount, 0)
 
   const handleCategoryPress = (categoryName: string) => {
-    Alert.alert(categoryName)
+    // Navigate to transactions tab with category filter
+    router.push({
+      pathname: '/(tabs)/transactions',
+      params: { category: categoryName }
+    })
   }
 
   const displayName = userName || 'there'
@@ -50,7 +57,7 @@ export default function Home() {
 
       {/* Category List Section - Scrollable with Max Height */}
       <View className="mt-3">
-        <Text className="text-2xl font-syneSemiBold text-black mb-3">
+        <Text className="text-xl font-syneSemiBold text-black mb-3">
           Expense by Categories:
         </Text>
         {categoryData.length === 0 ? (

@@ -1,7 +1,9 @@
 import { MaterialIcons } from '@expo/vector-icons'
-import React, { useMemo, useState } from 'react'
+import { useLocalSearchParams } from 'expo-router'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { FlatList, Modal, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
+
 import EmptyList from '../../components/EmptyList'
 import ExpenseItemCard from '../../components/ExpenseItemCard'
 import { CATEGORIES } from '../../constants/category'
@@ -9,22 +11,60 @@ import { useExpense } from '../../context/ExpenseContext'
 
 type SortOption = 'recent' | 'oldest' | 'highest' | 'lowest'
 
+const sortOptions: { label: string; value: SortOption }[] = [
+  { label: 'Recent First', value: 'recent' },
+  { label: 'Oldest First', value: 'oldest' },
+  { label: 'Highest', value: 'highest' },
+  { label: 'Lowest', value: 'lowest' },
+]
+
+const tabBarHeight = 100
+
 export default function Transactions() {
   const { expenses } = useExpense()
   const insets = useSafeAreaInsets()
+  const params = useLocalSearchParams<{ category?: string }>()
+
   const [sortOption, setSortOption] = useState<SortOption>('recent')
   const [showSortModal, setShowSortModal] = useState(false)
   const [selectedCategory, setSelectedCategory] = useState<string>('All')
+  const scrollViewRef = useRef<ScrollView>(null)
 
   // Calculate bottom padding: tab bar height (~100px) + safe area bottom
-  const tabBarHeight = 100
   const bottomPadding = tabBarHeight + Math.max(insets.bottom, 10)
+
+  // Sync selectedCategory with params when they change
+  useEffect(() => {
+    if (params.category) {
+      setSelectedCategory(params.category)
+    } else {
+      setSelectedCategory('All')
+    }
+  }, [params.category])
+
+  // Reset scroll position when category changes
+  useEffect(() => {
+    scrollViewRef.current?.scrollTo({ x: 0, animated: true })
+  }, [selectedCategory])
 
   // Get unique categories from expenses
   const availableCategories = useMemo(() => {
     const categorySet = new Set(expenses.map((exp) => exp.category))
     return CATEGORIES.filter((cat) => categorySet.has(cat.name))
   }, [expenses])
+
+  // Reorder categories to put selected one first
+  const orderedCategories = useMemo(() => {
+    if (selectedCategory === 'All') {
+      return availableCategories
+    }
+    
+    // Find the selected category and move it to the front
+    const selected = availableCategories.find(cat => cat.name === selectedCategory)
+    const others = availableCategories.filter(cat => cat.name !== selectedCategory)
+    
+    return selected ? [selected, ...others] : availableCategories
+  }, [availableCategories, selectedCategory])
 
   // Filter and sort expenses based on selected category and sort option
   const filteredAndSortedExpenses = useMemo(() => {
@@ -60,12 +100,7 @@ export default function Transactions() {
     setShowSortModal(false)
   }
 
-  const sortOptions: { label: string; value: SortOption }[] = [
-    { label: 'Recent First', value: 'recent' },
-    { label: 'Oldest First', value: 'oldest' },
-    { label: 'Highest', value: 'highest' },
-    { label: 'Lowest', value: 'lowest' },
-  ]
+
 
   return (
     <View className="flex-1 bg-white">
@@ -88,13 +123,14 @@ export default function Transactions() {
       {expenses.length > 0 && (
         <View className="pb-5">
           <ScrollView
+            ref={scrollViewRef}
             horizontal
             showsHorizontalScrollIndicator={false}
-            contentContainerStyle={{ paddingHorizontal: 20, gap: 10 }}
+            contentContainerStyle={{ paddingHorizontal: 20 }}
           >
             <Pressable
               onPress={() => setSelectedCategory('All')}
-              className={`px-4 py-2 rounded-full flex-row items-center ${
+              className={`px-4 py-2 rounded-full flex-row items-center mr-2.5 ${
                 selectedCategory === 'All' ? 'bg-[#52c1b7]' : 'bg-gray-100'
               }`}
             >
@@ -106,11 +142,11 @@ export default function Transactions() {
                 All Transactions
               </Text>
             </Pressable>
-            {availableCategories.map((category) => (
+            {orderedCategories.map((category) => (
               <Pressable
                 key={category.name}
                 onPress={() => setSelectedCategory(category.name)}
-                className={`px-4 py-2 rounded-full flex-row items-center ${
+                className={`px-4 py-2 rounded-full flex-row items-center mr-2.5 ${
                   selectedCategory === category.name
                     ? 'bg-[#52c1b7]'
                     : 'bg-gray-100'
