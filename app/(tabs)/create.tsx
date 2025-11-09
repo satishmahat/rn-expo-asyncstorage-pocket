@@ -97,10 +97,9 @@ export default function Create() {
   return (
     <KeyboardAvoidingView
       className="flex-1"
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 20}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'padding'}
     >
-      <ScrollView className="px-5 bg-white pt-5">
+      <ScrollView className="px-5 bg-white pt-5" contentContainerStyle={{ paddingBottom: insets.top + 40}}>
         {/* Header */}
         <Text className="text-3xl font-syneBold text-black">Add New Expense</Text>
         <Text className="text-base font-syneRegular text-gray-500 mt-2 mb-8">
@@ -113,6 +112,7 @@ export default function Create() {
           <TextInput
             className="border-2 border-gray-300 p-4 rounded-xl text-xl font-syneRegular"
             placeholder="$0.00"
+            placeholderTextColor="gray"
             value={amount}
             onChangeText={setAmount}
             keyboardType="numeric"
@@ -124,6 +124,7 @@ export default function Create() {
           <TextInput
             className="border-2 border-gray-300 p-4 rounded-xl text-xl font-syneRegular"
             placeholder="What was it for?"
+            placeholderTextColor="gray"
             value={title}
             onChangeText={setTitle}
           />

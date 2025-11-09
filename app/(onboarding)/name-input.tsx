@@ -40,7 +40,7 @@ export default function NameInput() {
     >
       <KeyboardAvoidingView
         className="flex-1"
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'padding'}
         keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : 0}
       >
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
