@@ -14,7 +14,7 @@ const CategoryCard = ({ item, onPress }: CategoryCardProps) => {
           transform: [{ scale: pressed ? 0.96 : 1 }],
         },
       ]}
-      className="mb-3 rounded-2xl overflow-hidden"
+      className="mb-3 rounded-2xl overflow-hidden px-5"
     >
       <LinearGradient
         colors={[`${item.color}33`, `${item.color}44`, `${item.color}66`]}

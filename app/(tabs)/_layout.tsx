@@ -22,8 +22,8 @@ function CustomTabBar({ state, descriptors, navigation }: BottomTabBarProps) {
         right: 0,
         alignItems: 'center',
         zIndex: 10,
-        paddingHorizontal: 16,
-        // paddingTop: 20,
+        paddingHorizontal: 42,
+        // paddingHorizontal: 16,
         paddingBottom: Math.max(insets.bottom, 10),
       }}
     >
@@ -71,9 +71,6 @@ function CustomTabBar({ state, descriptors, navigation }: BottomTabBarProps) {
               break
             case 'create':
               iconName = 'plus-circle'
-              break
-            case 'insights':
-              iconName = 'pie-chart'
               break
             default:
               iconName = 'home'
@@ -142,13 +139,6 @@ export default function TabsLayout() {
         }}
       />
       <Tabs.Screen
-        name="transactions"
-        options={{
-          tabBarLabel: 'Logs',
-          title: 'Logs',
-        }}
-      />
-      <Tabs.Screen
         name="create"
         options={{
           tabBarLabel: 'Create',
@@ -156,12 +146,12 @@ export default function TabsLayout() {
         }}
       />
       <Tabs.Screen
-        name="insights"
+        name="transactions"
         options={{
-          tabBarLabel: 'Stats',
-          title: 'Stats',
+          tabBarLabel: 'Logs',
+          title: 'Logs',
         }}
-      />
+      />  
     </Tabs>
     </SafeScreen>
   )
