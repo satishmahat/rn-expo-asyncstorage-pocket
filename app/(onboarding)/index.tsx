@@ -1,4 +1,5 @@
 import { useRouter } from 'expo-router'
+import LottieView from 'lottie-react-native'
 import React from 'react'
 import { Dimensions, Image, ImageBackground, Text, TouchableOpacity, View } from 'react-native'
 
@@ -28,17 +29,21 @@ export default function Welcome() {
             elevation: 10,
           }}
         >
-          <View className="flex-1 justify-center items-center gap-4">
-            <Text className="text-xl font-syneBold text-black text-center">Welcome To</Text>
+          <View className="flex-1 justify-end items-center pb-10">
+            <Text className="text-xl font-syneBold text-black text-center mb-4">Welcome To</Text>
             <Image
               source={require('../../assets/images/pocket.png')}
               className="w-80 h-14"
               resizeMode="contain"
             />
-            <Image
-              source={require('../../assets/images/welcome-bg.png')}
-              className="h-80 w-76"
-              resizeMode="contain"
+            <LottieView
+              source={require('../../assets/animations/welcome-animation.json')}
+              autoPlay
+              loop
+              style={{
+                width: 370, // w-76 equivalent (76 * 4 = 304)
+                height: 370, // h-80 equivalent (80 * 4 = 320)
+              }}
             />
           </View>
         </View>

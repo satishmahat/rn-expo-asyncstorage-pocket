@@ -80,7 +80,7 @@ export default function NameInput() {
             >
               {/* Header */}
               <View className="mb-8 items-center w-full">
-                <Text className="text-4xl font-syneBold text-black text-center mb-4 leading-tight">
+                <Text className="text-4xl font-syneBold text-black text-center my-4">
                   What should we call you?
                 </Text>
                 <Text className="text-base font-syneSemiBold text-gray-600 text-center leading-6">
